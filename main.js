@@ -42,6 +42,7 @@ const countUp = ()=> {
     },10);　　　　　　　　　　　　　　　　　　　　　　　　　　　//１０ミリ秒後に始める？
 };
 
+document.getElementById("reset").disabled = true;
 
 //クリック時のイベント
 $('#start').click(function() {
@@ -49,6 +50,7 @@ $('#start').click(function() {
     countUp();
     start.disabled = true;　　　　//2回押すと誤作動、させないように
     stop.disabled = false;  
+    reset.disabled = true;
 });
 
 
@@ -57,10 +59,13 @@ $('#stop').click(function() {
     timeToAdd += Date.now() - startTime;　　//０からの再スタート回避、過去のスタート時間からストップ時間までの経過時間を足す
     start.disabled = false;
     stop.disabled = true;
+    reset.disabled = false;
 });
 
 $('#reset').click(function() {
     elapsedTime = 0;
     timeToAdd = 0;
     updateTimeText();　　　　　　　//０になったタイムを表示
+    reset.disabled = true;
 });
+
